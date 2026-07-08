@@ -57,14 +57,20 @@
     width:100%;height:100%;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
-    padding:70px 8vw 90px;
+    padding:64px 8vw 84px;
     opacity:0;
     visibility:hidden;
     transform:translateX(40px) scale(.98);
     transition:opacity .6s cubic-bezier(.65,0,.35,1), transform .6s cubic-bezier(.65,0,.35,1), visibility .6s;
+    /* Safety net: if a slide's content is taller than the screen it scrolls
+       inside itself instead of getting clipped under the nav bar. */
+    overflow-y:auto;
+    overflow-x:hidden;
+    scrollbar-width:none;
   }
+  .slide::-webkit-scrollbar{display:none;}
   .slide.active{
     opacity:1;
     visibility:visible;
@@ -116,6 +122,9 @@
     align-items:center;
     text-align:center;
     gap:8px;
+    /* Auto margins keep content vertically centered, but still allow the
+       top to be scrolled into view when the slide overflows. */
+    margin:auto 0;
   }
 
   /* ---------- SLIDE 1 : COVER ---------- */
@@ -544,7 +553,7 @@
 
 <div id="progress-bar" style="width:6.25%"></div>
 <div class="brand-tag">🌊 Bondi Marketing</div>
-<div id="counter"><b id="cur">1</b> / 16</div>
+<div id="counter"><b id="cur">1</b> / <span id="tot">16</span></div>
 
 <div id="deck">
 
@@ -691,6 +700,15 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
         </div>
       </div>
       <div class="warning-box">⚠️ AI içerik otomatik olarak sıralama getirmez. İnsan editörlüğü şart.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6b — SEO CODE -->
+  <section class="slide" data-index="7">
+    <div class="content-wrap">
+      <div class="eyebrow">SEO · Otomasyon</div>
+      <h1>GitHub'da Çalışan SEO Audit</h1>
+      <p class="subtitle">Claude bu scripti yazdı — biz çalıştırıyoruz.</p>
       <div class="code-block">
         <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><div class="code-lang">python</div></div>
         <pre class="code-body"><span class="cm"># GitHub'da çalışan SEO audit script</span>
@@ -709,11 +727,12 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
         <span class="str">"h1_count"</span>: len(soup.find_all(<span class="str">'h1'</span>))
     }</pre>
       </div>
+      <div class="insight-note">"Kod tekrarlanabilir işi devralır — insan yorumu ve stratejiyi ekler."</div>
     </div>
   </section>
 
   <!-- SLIDE 7 -->
-  <section class="slide" data-index="7">
+  <section class="slide" data-index="8">
     <div class="content-wrap">
       <div class="eyebrow">Yerel SEO</div>
       <h1>Mahallenizde #1 Olun</h1>
@@ -723,6 +742,16 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
         <div class="pillar-card"><div class="pillar-num">02</div><h4>Yapısal Veri (Schema.org)</h4><p>Makineler işletmenizi "anlasın"</p></div>
         <div class="pillar-card"><div class="pillar-num">03</div><h4>AI Arama Görünürlüğü</h4><p>ChatGPT'ye "Sydney'de en iyi kafe" sorulduğunda</p></div>
       </div>
+      <div class="insight-note">"Makineler işletmenizi 'anladığında' hem Google Maps'te hem AI aramalarda öne çıkarsınız."</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7b — LOCAL SEO CODE -->
+  <section class="slide" data-index="9">
+    <div class="content-wrap">
+      <div class="eyebrow">Yerel SEO · Yapısal Veri</div>
+      <h1>İşletmenizi Makineye Tanıtın</h1>
+      <p class="subtitle">LocalBusiness schema — Google Maps &amp; AI arama için.</p>
       <div class="code-block glow-box">
         <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><div class="code-lang">json-ld</div></div>
         <pre class="code-body">{
@@ -748,7 +777,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 8 -->
-  <section class="slide" data-index="8">
+  <section class="slide" data-index="10">
     <div class="content-wrap">
       <div class="eyebrow">E-Ticaret</div>
       <h1>Ziyaretçiyi Alıcıya Dönüştür</h1>
@@ -763,7 +792,17 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
         <div class="funnel-arrow">↓</div>
         <div class="funnel-step"><div class="fnum">5</div><div class="flabel">Tekrar</div><div class="ftool">Email automation + AI kişiselleştirme</div></div>
       </div>
-      <div class="code-block" style="margin-top:22px;">
+      <div class="insight-note">"Her adım ölçülür ve optimize edilir — ziyaretçi tesadüfen değil, tasarımla alıcıya döner."</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8b — E-COMMERCE CODE -->
+  <section class="slide" data-index="11">
+    <div class="content-wrap">
+      <div class="eyebrow">E-Ticaret · Ürün Şeması</div>
+      <h1>Google Shopping'de Öne Çık</h1>
+      <p class="subtitle">Product schema — fiyat, stok ve puan doğrudan aramada görünür.</p>
+      <div class="code-block">
         <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><div class="code-lang">json-ld</div></div>
         <pre class="code-body">{
   <span class="key">"@type"</span>: <span class="str">"Product"</span>,
@@ -784,7 +823,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 9 -->
-  <section class="slide" data-index="9">
+  <section class="slide" data-index="12">
     <div class="content-wrap">
       <div class="eyebrow">AI Gerçeği</div>
       <h1>AI Her Şeyi Yapmaz</h1>
@@ -815,7 +854,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 10 -->
-  <section class="slide" data-index="10">
+  <section class="slide" data-index="13">
     <div class="content-wrap">
       <div class="eyebrow">Claude Yetenekleri</div>
       <h1>Claude ile Neler Yapılabilir?</h1>
@@ -833,7 +872,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 11 -->
-  <section class="slide" data-index="11">
+  <section class="slide" data-index="14">
     <div class="content-wrap">
       <div class="eyebrow">Pratik Örnek</div>
       <h1>Lokal İşletme AI Stratejisi</h1>
@@ -850,7 +889,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 12 -->
-  <section class="slide" data-index="12">
+  <section class="slide" data-index="15">
     <div class="content-wrap">
       <div class="eyebrow">AI Arama Optimizasyonu</div>
       <h1>Yeni SEO Savaş Alanı</h1>
@@ -866,7 +905,17 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
         <div class="todo-chip">Author bio sayfaları oluştur</div>
         <div class="todo-chip">Kaynak gösterilen içerik yaz</div>
       </div>
-      <div class="code-block glow-box" style="margin-top:26px;">
+      <div class="insight-note">"Artık soru Google'da ilk sırada olmak değil — AI'ın cevabında yer almak."</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 12b — AI SEARCH CODE -->
+  <section class="slide" data-index="16">
+    <div class="content-wrap">
+      <div class="eyebrow">AI Arama · FAQ Şeması</div>
+      <h1>AI'ın Cevabında Yer Al</h1>
+      <p class="subtitle">FAQ schema — AI aramalarda öne çıkmanın anahtarı.</p>
+      <div class="code-block glow-box">
         <div class="code-header"><div class="code-dots"><span></span><span></span><span></span></div><div class="code-lang">json-ld</div></div>
         <pre class="code-body"><span class="cm">// FAQ Schema — AI aramalarda öne çıkmanın anahtarı</span>
 {
@@ -885,7 +934,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 13 — TIME & KNOWLEDGE SAVINGS -->
-  <section class="slide" data-index="13">
+  <section class="slide" data-index="17">
     <div class="content-wrap">
       <div class="eyebrow">Verimlilik</div>
       <h1>Zamandan ve Bilgiden Kazanç</h1>
@@ -920,7 +969,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 14 — AI CONTROL + BUSINESS GAIN -->
-  <section class="slide" data-index="14">
+  <section class="slide" data-index="18">
     <div class="content-wrap">
       <div class="eyebrow">Gerçek</div>
       <h1>AI Her Zaman Hata Yapar</h1>
@@ -950,7 +999,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 15 -->
-  <section class="slide" data-index="15">
+  <section class="slide" data-index="19">
     <div class="content-wrap">
       <div class="eyebrow">Neden Bondi Marketing?</div>
       <h1>Sonuç Odaklı, Yerel Uzman</h1>
@@ -970,7 +1019,7 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
   </section>
 
   <!-- SLIDE 16 -->
-  <section class="slide" data-index="16">
+  <section class="slide" data-index="20">
     <div class="content-wrap">
       <div class="eyebrow">Hazır mısınız?</div>
       <h1>Markanızı Birlikte Büyütelim</h1>
@@ -1007,6 +1056,8 @@ CTA olmadan 3 başlık, karakter limiti 30."</span></pre>
 
   var progressBar = document.getElementById('progress-bar');
   var curEl = document.getElementById('cur');
+  var totEl = document.getElementById('tot');
+  if(totEl) totEl.textContent = total;
 
   function render(){
     slides.forEach(function(s, i){
